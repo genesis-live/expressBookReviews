@@ -56,7 +56,11 @@ public_users.get('/review/:isbn', function (req, res) {
   return res.status(200).json(book.reviews);
 });
 
-// Task 10: Get all books using async/await with Axios
+/**
+ * Task 10: Get all books using async/await with Axios.
+ * Makes an asynchronous GET request to the base books endpoint
+ * and returns the full list of books available in the shop.
+ */
 public_users.get('/async/books', async (req, res) => {
   try {
     const response = await axios.get(`${BASE_URL}/`);
@@ -66,14 +70,22 @@ public_users.get('/async/books', async (req, res) => {
   }
 });
 
-// Task 11: Get book by ISBN using Promise with Axios
+/**
+ * Task 11: Get book details based on ISBN using Promise callbacks with Axios.
+ * Sends a GET request to the /isbn/:isbn endpoint and resolves
+ * the book data via .then(), or returns a 404 error via .catch().
+ */
 public_users.get('/async/isbn/:isbn', (req, res) => {
   axios.get(`${BASE_URL}/isbn/${req.params.isbn}`)
     .then(response => res.status(200).json(response.data))
     .catch(err => res.status(err.response?.status || 404).json({ message: err.response?.data?.message || "Book not found" }));
 });
 
-// Task 12: Get books by author using async/await with Axios
+/**
+ * Task 12: Get book details based on Author using async/await with Axios.
+ * Makes an asynchronous GET request filtering books by the author
+ * name provided in the route parameter. Returns 404 if no match found.
+ */
 public_users.get('/async/author/:author', async (req, res) => {
   try {
     const response = await axios.get(`${BASE_URL}/author/${req.params.author}`);
@@ -83,7 +95,11 @@ public_users.get('/async/author/:author', async (req, res) => {
   }
 });
 
-// Task 13: Get books by title using Promise with Axios
+/**
+ * Task 13: Get book details based on Title using Promise callbacks with Axios.
+ * Sends a GET request to the /title/:title endpoint and resolves
+ * the matching books via .then(), or returns a 404 error via .catch().
+ */
 public_users.get('/async/title/:title', (req, res) => {
   axios.get(`${BASE_URL}/title/${req.params.title}`)
     .then(response => res.status(200).json(response.data))
