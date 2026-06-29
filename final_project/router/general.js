@@ -24,7 +24,7 @@ public_users.post("/register", (req, res) => {
 
 // Task 1: Get all books (sync)
 public_users.get('/', function (_req, res) {
-  return res.status(200).send(JSON.stringify(books, null, 4));
+  return res.status(200).json(books);
 });
 
 // Task 2: Get by ISBN (sync)
